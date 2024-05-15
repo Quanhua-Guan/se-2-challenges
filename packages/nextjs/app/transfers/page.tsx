@@ -9,7 +9,7 @@ const Transfers: NextPage = () => {
     contractName: "EeeMay",
     eventName: "Transfer",
     // Specify the starting block number from which to read events, this is a bigint.
-    fromBlock: 0n,
+    fromBlock: 14478109n,
   });
 
   if (isLoading)

@@ -194,6 +194,9 @@ You can verify your smart contract on Etherscan by running (`yarn verify --netwo
 ```shell
 yarn verify --network sepolia
 ```
+```shell
+yarn verify --api-url https://api.basescan.org # verify on basescan
+```
 
 > It is okay if it says your contract is already verified. Copy the address of YourCollectable.sol and search it on sepolia Etherscan to find the correct URL you need to submit this challenge.
 

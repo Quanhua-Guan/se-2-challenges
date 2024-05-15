@@ -4,25 +4,25 @@
 
 import { ethers } from "hardhat";
 import { expect } from "chai";
-import { YourCollectible } from "../typechain-types";
+import { EeeMay } from "../typechain-types";
 
 describe("🚩 Challenge 0: 🎟 Simple NFT Example 🤓", function () {
-  let myContract: YourCollectible;
+  let myContract: EeeMay;
 
-  describe("YourCollectible", function () {
+  describe("EeeMay", function () {
     const contractAddress = process.env.CONTRACT_ADDRESS;
 
     let contractArtifact: string;
     if (contractAddress) {
       // For the autograder.
-      contractArtifact = `contracts/download-${contractAddress}.sol:YourCollectible`;
+      contractArtifact = `contracts/download-${contractAddress}.sol:EeeMay`;
     } else {
-      contractArtifact = "contracts/YourCollectible.sol:YourCollectible";
+      contractArtifact = "contracts/EeeMay.sol:EeeMay";
     }
 
     it("Should deploy the contract", async function () {
-      const YourCollectible = await ethers.getContractFactory(contractArtifact);
-      myContract = await YourCollectible.deploy();
+      const EeeMay = await ethers.getContractFactory(contractArtifact);
+      myContract = await EeeMay.deploy();
       console.log("\t"," 🛰  Contract deployed on", await myContract.getAddress());
     });
 

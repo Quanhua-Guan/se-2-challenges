@@ -8,7 +8,7 @@ export const NFTCard = ({ nft }: { nft: Collectible }) => {
   const [transferToAddress, setTransferToAddress] = useState("");
 
   const { writeAsync: transferNFT } = useScaffoldContractWrite({
-    contractName: "YourCollectible",
+    contractName: "EeeMay",
     functionName: "transferFrom",
     args: [nft.owner, transferToAddress, BigInt(nft.id.toString())],
   });

@@ -30,6 +30,12 @@ const Events: NextPage = () => {
     fromBlock: 0n,
   });
 
+  const { data: balApprovalEvents, isLoading: isBalApprovalEventsLoading } = useScaffoldEventHistory({
+    contractName: "Balloons",
+    eventName: "Approval",
+    fromBlock: 0n,
+  });
+
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
@@ -212,6 +218,53 @@ const Events: NextPage = () => {
             </div>
           </div>
         )}
+
+        {isBalApprovalEventsLoading ? (
+          <div className="flex justify-center items-center mt-10">
+            <span className="loading loading-spinner loading-lg"></span>
+          </div>
+        ) : (
+          <div>
+            <div className="text-center mb-4">
+              <span className="block text-2xl font-bold">Balloons Approval  Events</span>
+            </div>
+            <div className="overflow-x-auto shadow-lg">
+              <table className="table table-zebra w-full">
+                <thead>
+                  <tr>
+                    <th className="bg-primary">Address (Owner)</th>
+                    <th className="bg-primary">Address (Spender)</th>
+                    <th className="bg-primary">Amount of Balloons</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {!balApprovalEvents || balApprovalEvents.length === 0 ? (
+                    <tr>
+                      <td colSpan={3} className="text-center">
+                        No events found
+                      </td>
+                    </tr>
+                  ) : (
+                    balApprovalEvents?.map((event, index) => {
+                      return (
+                        <tr key={index}>
+                          <td className="text-center">
+                            <Address address={event.args.owner} />
+                          </td>
+                          <td className="text-center">
+                            <Address address={event.args.spender} />
+                          </td>
+                          <td>{parseFloat(formatEther(event.args.value)).toFixed(4)}</td>
+                        </tr>
+                      );
+                    })
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
       </div>
     </>
   );
